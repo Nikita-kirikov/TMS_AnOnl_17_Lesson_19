@@ -5,5 +5,5 @@
     <color name="background_note">#EFEFEF</color>
     <color name="background_button_start">#66CEF0</color>
     <color name="background_button_end">#6AACF4</color>
-    <color name="important_checkbox">#FFD1D1</color>
+    <color name="important_note">#FFD1D1</color>
 </resources>

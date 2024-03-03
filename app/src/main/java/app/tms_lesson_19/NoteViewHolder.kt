@@ -3,10 +3,8 @@ package app.tms_lesson_19
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.textfield.TextInputEditText
 
 class NoteViewHolder(root: View) : RecyclerView.ViewHolder(root) {
 
@@ -16,13 +14,18 @@ class NoteViewHolder(root: View) : RecyclerView.ViewHolder(root) {
 
 
 
-    fun bind(note : Note, click : ((Note) -> Unit)?) {
+    fun bind(note: Note, click: ((Note) -> Unit)?, onLongClick: ((Note) -> Unit)?) {
         headerView.text = note.header
         textView.text = note.text
         dateView.text = note.date
 
         itemView.setOnClickListener {
-           click?.invoke(note)
+            click?.invoke(note)
+        }
+
+        itemView.setOnLongClickListener() {
+            onLongClick?.invoke(note)
+            true
         }
     }
 

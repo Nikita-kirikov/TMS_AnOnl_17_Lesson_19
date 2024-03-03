@@ -17,13 +17,18 @@ class NoteImportantViewHolder(root: View) : RecyclerView.ViewHolder(root) {
 
 
 
-    fun bind(note : Note, click : ((Note) -> Unit)?) {
+    fun bind(note : Note, click : ((Note) -> Unit)?, onLongClick: ((Note) -> Unit)?) {
         headerView.text = note.header
         textView.text = note.text
         dateView.text = note.date
 
         itemView.setOnClickListener {
             click?.invoke(note)
+        }
+
+        itemView.setOnLongClickListener() {
+            onLongClick?.invoke(note)
+            true
         }
     }
 

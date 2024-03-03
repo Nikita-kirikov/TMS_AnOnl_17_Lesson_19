@@ -10,11 +10,11 @@ class GroupViewHolder(root: View) : RecyclerView.ViewHolder(root) {
 
     val textView : TextView = root.findViewById(R.id.group)
 
-    fun bind(group: Group, onLongClick : ((Group) -> Unit)?) {
+    fun bind(group: Group, onGroupClick : ((Group) -> Unit)?) {
         textView.text = group.text
 
         itemView.setOnLongClickListener {
-            onLongClick?.invoke(group)
+            onGroupClick?.invoke(group)
             true
         }
     }

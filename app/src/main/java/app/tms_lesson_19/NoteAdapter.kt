@@ -2,15 +2,16 @@ package app.tms_lesson_19
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.coroutines.NonDisposableHandle.parent
 import java.lang.IllegalStateException
 
 class NoteAdapter() :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     var notes = listOf<NoteType>()
+
     var onClick : ((Note) -> Unit)? = null
-    var onLongClick : ((Group) -> Unit)? = null
+    var onGroupClick : ((Group) -> Unit)? = null
+    var onLongClick : ((Note) -> Unit)? = null
 
     override fun getItemViewType(position: Int): Int {
         val item = notes[position]
@@ -37,12 +38,12 @@ class NoteAdapter() :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val item = notes[position]
-        if (item is Note && holder is NoteViewHolder) {
-            holder.bind(item, onClick)
-        } else if (item is Note && holder is NoteImportantViewHolder) {
-            holder.bind(item, onClick)
+        if (item is Note && holder is NoteImportantViewHolder) {
+            holder.bind(item, onClick, onLongClick)
+        } else if (item is Note && holder is NoteViewHolder) {
+            holder.bind(item, onClick, onLongClick)
         } else if (item is Group && holder is GroupViewHolder) {
-            holder.bind(item, onLongClick)
+            holder.bind(item, onGroupClick)
         } else {
             throw IllegalStateException()
         }

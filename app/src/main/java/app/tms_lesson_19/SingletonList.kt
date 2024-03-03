@@ -10,4 +10,8 @@ object SingletonList {
     fun getNotes() : List<NoteType> {
         return notes
     }
+
+    fun importantItem(item : Note) {
+        item.important = !item.important
+    }
 }

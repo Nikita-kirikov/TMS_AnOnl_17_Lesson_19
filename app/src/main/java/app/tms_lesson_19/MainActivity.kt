@@ -70,8 +70,13 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Note ${it.header} is clicked", Toast.LENGTH_SHORT).show()
         }
 
-        myAdapter.onLongClick = {
+        myAdapter.onGroupClick = {
             Toast.makeText(this, "Group ${it.text} is clicked", Toast.LENGTH_SHORT).show()
+        }
+
+        myAdapter.onLongClick = {
+            SingletonList.importantItem(it)
+            myAdapter.notifyItemChanged(myAdapter.itemCount)
         }
     }
 
@@ -94,5 +99,6 @@ class MainActivity : AppCompatActivity() {
 
         headerAdd.text?.clear()
         textAdd.text?.clear()
+        important.isChecked = false
     }
 }
